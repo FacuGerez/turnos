@@ -1,0 +1,32 @@
+{
+  "name": "turnos",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "babel-loader": "^9.1.2",
+    "bootstrap": "^5.2.3",
+    "css-loader": "^6.7.4",
+    "jquery": "^3.7.0",
+    "node-sass": "^9.0.0",
+    "popper.js": "^1.16.1",
+    "sass-loader": "^13.3.0",
+    "style-loader": "^3.3.3"
+  }
+}
