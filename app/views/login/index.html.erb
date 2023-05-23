@@ -1,2 +1,64 @@
-<h1>Login#index</h1>
-<p>Find me in app/views/login/index.html.erb</p>
+<head>
+  <title>Log in verificated</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      border: 2px solid #ccc;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<% @todosLosUsuarios.each do |usuarios| %>
+    <h2><%= product.name %></h2>
+<% end %>
+  <div class="container">
+    <h2>Log In user</h2>
+    <form action="tu_script_de_autenticacion.php" method="post">
+      <label for="username">Correo electronico:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+
+      <input type="submit" value="Iniciar sesión">
+    </form>
+  </div>
+</body>
