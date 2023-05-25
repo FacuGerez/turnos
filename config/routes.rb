@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get "/prueba", to: "meets#index"
-  get '/register', to: "register#index"
+  get '/register', to: "register#index", as: :new_user
   get '/login' , to: "login#index"
 end
