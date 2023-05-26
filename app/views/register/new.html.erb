@@ -1,47 +1,92 @@
 <head>
   <title>Register validation</title>
-  <style></style>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="name"],
+    input[type="surname"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h2>Registro de usuario</h2>
+    
     <%= form_with model:@User do |us|%>
       <% @user.errors.full_messages.each do |error|%>
         <div>
           <%= error %>
         </div>
       <%end%>
-      <%= us.label :name %>
-      <%= us.text_field :name %>
+      <div>
+        <div>
+          <%= alert %>
+          <%= notice %>
+        </div>
+      </div>
+      <div>
+        <%= us.label :name %>
+        <%= us.text_field :name %>
+      </div>
+      
+      <div>
+        <%= us.label :surname %>
+        <%= us.text_field :surname %>
+      </div>
+      
+      <div>
+        <%= us.label :email %>
+        <%= us.text_field :email %>
+      </div>
 
-      <%= us.label :surname %>
-      <%= us.text_field :surname %>
-
-      <%= us.label :email %>
-      <%= us.text_field :email %>
-
-      <%= us.label :password %>
-      <%= us.text_field :password %>
+      <div>
+        <%= us.label :password %>
+        <%= us.text_field :password %>
+      </div>
 
       <%= us.submit %>
       
     <%end%>
     <div></div>
-    <form action="tu_script_de_registro.php" method="post">
-      <label for="username">Nombre:</label>
-      <input type="text" id="username" name="username" required>
-
-      <label for="lastname">Apellido:</label>
-      <input type="text" id="lastname" name="lastname" required>
-
-      <label for="email">Correo electrónico:</label>
-      <input type="email" id="email" name="email" required>
-
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" name="password" required>
-
-      <input type="submit" value="Registrarse">
-    </form>
   </div>
 </body>
 </html>
