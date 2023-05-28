@@ -11,15 +11,15 @@ class RegisterController < ApplicationController
     @user[:surname] = params[:surname]
     @user[:email] = params[:email]
     @user[:password] = params[:password]
-
+    @usu = User.new()
     @todosLosUsuarios.each do |usu|
       if usu[:email] == params[:email]
-        render :new, status: :unprocessable_entity, notice: "Este correo ya fue usado anteriormente"        
+        @usu = usu        
       end
     end
 
-    if @user.save
-      #hago algo
+    if @usu[:email] != params[:email] && @user.save 
+      redirect_to objeto_id(@user)
     else
       render :new, status: :unprocessable_entity, notice: "Hay campos sin completar"
     end

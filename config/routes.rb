@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get '/register', to: "register#new", as: :new_user
   post "/register", to: "register#create"
   get '/login' , to: "login#index"
+  resources :users
 end
