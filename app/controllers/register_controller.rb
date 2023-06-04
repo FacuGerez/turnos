@@ -19,9 +19,10 @@ class RegisterController < ApplicationController
     end
 
     if @usu[:email] != params[:email] && @user.save 
-      redirect_to objeto_id(@user)
+      redirect_to user_path(@user.id)
     else
-      render :new, status: :unprocessable_entity, notice: "Hay campos sin completar"
+      flash[:success] = "Hay campos sin completar"
+      render :new, status: :unprocessable_entity
     end
     #if @user.save        osea que si se guarda
     #hago algo     (redirec_to user_path     osea la pagina del usuario que todavia no generamos)

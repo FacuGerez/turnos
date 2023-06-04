@@ -43,22 +43,35 @@
     input[type="submit"]:hover {
       background-color: #45a049;
     }
+
+    .index-link[type="index-link"] {
+      width: 100%;
+      color: blue;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
-<% @todosLosUsuarios.each do |usuarios| %>
-    <h2><%= usuarios %></h2>
-<% end %>
   <div class="container">
     <h2>Log In user</h2>
-    <form action="tu_script_de_autenticacion.php" method="post">
-      <label for="username">Correo electronico:</label>
-      <input type="text" id="username" name="username" required>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+      <%= value %>
+      </div>
+    <%end%>
+    <%= form_with model:@User do |us|%> 
+      
+      <div>
+        <%= us.label :email %>
+        <%= us.text_field :email %>
+      </div>
 
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" name="password" required>
+      <div>
+        <%= us.label :password %>
+        <%= us.text_field :password %>
+      </div>
 
-      <input type="submit" value="Iniciar sesión">
-    </form>
-  </div>
+      <%= us.submit %>
+      <%= link_to "¿No te has registrado aun?", :new_user, class: "index-link" %>
+    <%end%>
 </body>

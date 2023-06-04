@@ -50,7 +50,12 @@
 <body>
   <div class="container">
     <h2>Registro de usuario</h2>
-    
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+      <%= value %>
+      </div>
+    <%end%>
     <%= form_with model:@User do |us|%>
       <% @user.errors.full_messages.each do |error|%>
         <div>
