@@ -11,8 +11,8 @@ class EventosController < ApplicationController
 
   # POST /eventos or /eventos.json
   def create
-    usuario = User.find(params[:id])
-    @evenNuevo =  usuario.eventos.build({
+    @usuario = User.find(params[:id])
+    @evenNuevo =  @usuario.eventos.build({
       eventName: params[:eventName],
       description: params[:description],
       start_time: params[:start_time],
