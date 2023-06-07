@@ -22,3 +22,4 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+<% us.text_field :id_usuario, value: @usuario.id %>

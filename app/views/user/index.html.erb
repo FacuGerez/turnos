@@ -17,6 +17,22 @@
             color: white;
         }
 
+        .redireccion {
+        /* Estilos personalizados */
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 4px;
+        }
+
+        .redireccion:hover {
+        background-color: #45a049;
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -69,6 +85,7 @@
     <header>
         <%= "Bienvenido #{@user.name}" %>
     </header>
+    <%= link_to "New event", new_evento_path, class: "btn btn-primary redireccion" %>
     <div class="container">
         <div class="calendar">
             <%= month_calendar do |date| %>

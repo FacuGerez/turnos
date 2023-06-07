@@ -3,5 +3,6 @@ class User < ApplicationRecord
     validates :surname, presence: true 
     validates :email, presence: true 
     validates :password, presence: true
+    has_many :eventos
     
 end
