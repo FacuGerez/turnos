@@ -17,11 +17,15 @@ class EventosController < ApplicationController
       start_time: params[:start_time],
       end_time: params[:end_time]
     })
-    pp @evenNuevo
-    if @evenNuevo.save 
-      redirect_to user_path(params[:id])
+    if params[:start_time].day == params[:end_time].day && params[:start_time].hour < params[:end_time].hour 
+      if @evenNuevo.save
+        redirect_to user_path(params[:id])
+      else
+        flash[:success] = "Hay campos sin completar"
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash[:success] = "Hay campos sin completar"
+      flash[:success] = "Empieza tiene que ser primero que termina y en el mismo dia"
       render :new, status: :unprocessable_entity
     end
     
@@ -33,14 +37,20 @@ class EventosController < ApplicationController
 
   # PATCH/PUT /eventos/1 or /eventos/1.json
   def update
-    respond_to do |format|
-      if @evento.update(evento_params)
-        format.html { redirect_to evento_url(@evento), notice: "Evento was successfully updated." }
-        format.json { render :show, status: :ok, location: @evento }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @evento.errors, status: :unprocessable_entity }
+    empieza =  DateTime.parse(params[:evento][:start_time])
+    termina = DateTime.parse(params[:evento][:end_time])
+    if empieza.day == termina.day && empieza.hour < termina.hour
+      respond_to do |format|
+        if @evento.update(evento_params)
+          redirect_to user_path(params[:id])
+        else
+          flash[:success] = "Hay campos sin completar"
+          render :edit, status: :unprocessable_entity
+        end
       end
+    else
+      flash[:success] = "Empieza tiene que ser primero que termina y en el mismo dia"
+      render :edit, status: :unprocessable_entity
     end
   end
 

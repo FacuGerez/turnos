@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get '/login' , to: "login#new", as: :new_register
   post "/login", to: "login#create"
   get '/user/:id' , to: "user#index", as: :user
+  get "evento/:id1", to:"eventos#show",as: :evento
   get '/user/:id/newEvent' , to: "eventos#new", as: :new_evento
   post '/user/:id/newEvent' , to: "eventos#create"
-  get "/user/:id/evento/:id1",to: "eventos#edit",as: :update_evento
-  get "evento/:id1", to:"eventos#show",as: :evento
+  get "/user/:id/evento/:id1/edit",to: "eventos#edit",as: :edit_evento
+  patch "/user/:id/evento/:id1",to: "eventos#update", as: :update_evento
 end
