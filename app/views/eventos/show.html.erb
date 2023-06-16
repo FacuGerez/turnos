@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizacion Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #3a6ea5;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <%= "Aca tenemos al : #{@evento.eventName}" %>
+    </header>
+    <div class="container">
+        <div class="Evento">
+            <h1><%= @evento.eventName %></h1>
+            <h2><%= @evento.description %></h2>
+            <p><%= @evento.start_time %></p>
+            <p><%= @evento.end_time %></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -18,19 +18,18 @@
         }
 
         .redireccion {
-        /* Estilos personalizados */
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 4px;
         }
 
         .redireccion:hover {
-        background-color: #45a049;
+            background-color: #45a049;
         }
 
         .container {
@@ -46,7 +45,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 80%;
-            max-width: 600px;
+            max-width: max-content;
         }
         .calendar table {
             width: 100%;
@@ -67,7 +66,6 @@
 
         .calendar td:hover {
             background-color: #e0f0ff;
-            cursor: pointer;
         }
 
         .calendar .selected {
@@ -79,6 +77,25 @@
             background-color: #a5c9e0;
             font-weight: bold;
         }
+        .dia {
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .dia:hover {
+            background-color: #a5c9e0;
+            cursor: pointer;
+        }
+        .reunion {
+            color: black;
+            text-align: center;
+            background-color: #e0f0ff;
+            border-radius: 4px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
@@ -89,7 +106,25 @@
     <div class="container">
         <div class="calendar">
             <%= month_calendar do |date| %>
-              <%= date.day %>
+              <%= link_to date.day, new_evento_path, class: "btn btn-primary dia" %>
+              <% @eventos.each do |evento| %>
+                <%if date.day == evento.start_time.day %>
+                    <div class="reunion">
+                        Aca deberia ir en vez de evento_path tendria que estar update_evento_path
+                        <%= link_to update_evento_path(id1: evento.id), class: "btn btn-primary dia" do %>
+                            <div class="nombre">
+                                <%= evento.eventName %>
+                            </div>
+                            <div class="horaInicio">
+                                Desde:<%= evento.start_time.strftime("%H-%M") %>
+                            </div>
+                            <div class="horaFinal">
+                                Hasta:<%= evento.end_time.strftime("%H-%M") %>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+              <% end %>
             <% end %>
         </div>
     </div>

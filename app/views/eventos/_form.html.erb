@@ -1,27 +1,81 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arreglo de los formularios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
 
-<%= form_with model: @evento do |us|%> 
-  <div>
-    <%= us.label :eventName, style: "display: block" %>
-    <%= us.text_field :eventName %>
-  </div>
+        header {
+            background-color: #A569BD;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
 
-  <div>
-    <%= us.label :description, style: "display: block" %>
-    <%= us.text_field :description %>
-  </div>
+        .formulario {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
 
-  <div>
-    <%= us.label :start_time, style: "display: block" %>
-    <%= us.datetime_field :start_time %>
-  </div>
+        .texto,
+        .fechas {
+          width: 100%;
+          padding: 10px;
+          margin-bottom: 10px;
+          border: 2px solid #ccc;
+          border-radius: 3px;
+        }
 
-  <div>
-    <%= us.label :end_time, style: "display: block" %>
-    <%= us.datetime_field :end_time %>
-  </div>
-  <div>
-    <%= us.submit %>
-  </div>
+        .fechas {
+          padding: 5px;
+          margin-bottom: 4px;
+        }
+        
+    </style>
+</head>
+<body>
+  <header>
+    <h1>El evento es : <%= @evento.eventName %></h1>
+  </header>
+  <div class="formulario">
+    <%= form_with model: @evento do |us|%> 
       
-<%end%>
+      <div>
+        <%= us.label "Nombre del evento :", style: "display: block" %>
+        <%= us.text_field :eventName, class: 'texto' %>
+      </div>
+
+      <div>
+        <%= us.label "La descripcion", style: "display: block" %>
+        <%= us.text_field :description, class: 'texto' %>
+      </div>
+
+      <div>
+        <%= us.label "Empieza:", style: "display: block" %>
+        <%= us.datetime_field :start_time , class: 'fechas'%>
+      </div>
+
+      <div>
+        <%= us.label "Termina:", style: "display: block" %>
+        <%= us.datetime_field :end_time , class: 'fechas'%>
+      </div>
+      <div>
+        <%= us.submit %>
+      </div>
+          
+    <%end%>
+  </div>
+</body>
 

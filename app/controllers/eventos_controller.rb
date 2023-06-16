@@ -1,15 +1,14 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
 
+  def show
+    @evento = Evento.find(params[:id1])
+  end
+
   def new
     @usuario = User.find(params[:id])
   end
-
-  # GET /eventos/1/edit
-  def edit
-  end
-
-  # POST /eventos or /eventos.json
+  
   def create
     @usuario = User.find(params[:id])
     @evenNuevo =  @usuario.eventos.build({
@@ -26,6 +25,10 @@ class EventosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
     
+  end
+
+  # GET /eventos/1/edit
+  def edit
   end
 
   # PATCH/PUT /eventos/1 or /eventos/1.json
@@ -54,7 +57,7 @@ class EventosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evento
-      @evento = Evento.find(params[:id])
+      @evento = Evento.find(params[:id1])
     end
 
 end
