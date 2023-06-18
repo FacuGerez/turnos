@@ -110,7 +110,6 @@
               <% @eventos.each do |evento| %>
                 <%if date.day == evento.start_time.day %>
                     <div class="reunion">
-                        Aca deberia ir en vez de evento_path tendria que estar update_evento_path
                         <%= link_to edit_evento_path(id1: evento.id), class: "btn btn-primary dia" do %>
                             <div class="nombre">
                                 <%= evento.eventName %>

@@ -17,7 +17,9 @@ class EventosController < ApplicationController
       start_time: params[:start_time],
       end_time: params[:end_time]
     })
-    if params[:start_time].day == params[:end_time].day && params[:start_time].hour < params[:end_time].hour 
+    empieza =  DateTime.parse(params[:start_time])
+    termina = DateTime.parse(params[:end_time])
+    if empieza.day == termina.day && empieza.hour < termina.hour 
       if @evenNuevo.save
         redirect_to user_path(params[:id])
       else
@@ -31,22 +33,18 @@ class EventosController < ApplicationController
     
   end
 
-  # GET /eventos/1/edit
   def edit
   end
 
-  # PATCH/PUT /eventos/1 or /eventos/1.json
   def update
     empieza =  DateTime.parse(params[:evento][:start_time])
     termina = DateTime.parse(params[:evento][:end_time])
     if empieza.day == termina.day && empieza.hour < termina.hour
-      respond_to do |format|
-        if @evento.update(evento_params)
-          redirect_to user_path(params[:id])
-        else
-          flash[:success] = "Hay campos sin completar"
-          render :edit, status: :unprocessable_entity
-        end
+      if @evento.update(evento_params)
+        redirect_to user_path(params[:id])
+      else
+        flash[:success] = "Hay campos sin completar"
+        render :edit, status: :unprocessable_entity
       end
     else
       flash[:success] = "Empieza tiene que ser primero que termina y en el mismo dia"
@@ -54,14 +52,13 @@ class EventosController < ApplicationController
     end
   end
 
-  # DELETE /eventos/1 or /eventos/1.json
   def destroy
     @evento.destroy
+    redirect_to user_path(params[:id]), status: :see_other
+  end
 
-    respond_to do |format|
-      format.html { redirect_to eventos_url, notice: "Evento was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  def evento_params
+    params.require(:evento).permit(:eventName,:description,:start_time,:end_time)
   end
 
   private

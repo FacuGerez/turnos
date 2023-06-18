@@ -20,13 +20,33 @@
         .formulario {
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: max-content;
-            max-width: max-content;
+            align-items: left;
+            height: 400px;
+            width: 500px;
             margin: 100px auto;
-            padding: 20px;
+            padding: 50px;
             background-color: #fff;
             border-radius: 5px;
+        }
+        
+        .alertaDeError {
+          justify-content: center;
+          align-items: left;
+        }
+
+        .eliminar {
+          justify-content: center;
+          align-items: left;
+          color: black;
+          padding: 10px 20px;
+          text-align: center;
+          display: inline-block;
+          border-radius: 5px;
+          background-color: #f0f4f8;
+        }
+        .eliminar:hover {
+          background-color: #a5c9e0;
+          cursor: pointer;
         }
 
         .texto,
@@ -50,11 +70,12 @@
     <h1>El evento es : <%= @evento.eventName %></h1>
   </header>
   <div class="formulario">
-    <% flash.each do |key, value| %>
-      <div class="alertaDeError">
+    <div class="alertaDeError">
+      <% flash.each do |key, value| %>
         <%= value %>
-      </div>
-    <%end%>
+      <%end%>
+    </div>
+    <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
     <%= form_with url: update_evento_path, model: @evento do |us|%> 
       
       <div>
