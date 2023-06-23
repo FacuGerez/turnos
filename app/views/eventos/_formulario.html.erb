@@ -1,0 +1,44 @@
+<div class="formulario">
+    <%= form_with url: redirect_path, model: @evento do |us|%>
+      <% flash.each do |key, value| %>
+        <div class="alertaDeError">
+          <h3><%= value %></h3>
+        </div>
+      <%end%>
+
+      <div>
+        <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
+        <%= us.text_field :eventName, class: 'texto' %>
+      </div>
+
+      <div>
+        <%= us.label :description, "La descripcion", style: "display: block" %>
+        <%= us.text_field :description, class: 'texto' %>
+      </div>
+
+      <div>
+        <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
+        <%= us.date_field :dia , class: 'fechas'%>
+      </div>
+
+      <div>
+        <%= us.label :start_time, "Empieza:", style: "display: block" %>
+        <%= us.time_field :start_time , class: 'fechas'%>
+      </div>
+
+      <div>
+        <%= us.label :end_time, "Termina:", style: "display: block" %>
+        <%= us.time_field :end_time , class: 'fechas'%>
+      </div>
+
+      <div>
+        <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
+        <%= us.time_field :plazoDeTiempo , class: 'fechas'%>
+      </div>
+
+      <div>
+        <%= us.submit %>
+      </div>
+          
+    <%end%>
+  </div>

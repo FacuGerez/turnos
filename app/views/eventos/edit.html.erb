@@ -17,23 +17,6 @@
             color: white;
         }
 
-        .formulario {
-            display: flex;
-            justify-content: center;
-            align-items: left;
-            height: 400px;
-            width: 500px;
-            margin: 100px auto;
-            padding: 50px;
-            background-color: #fff;
-            border-radius: 5px;
-        }
-        
-        .alertaDeError {
-          justify-content: center;
-          align-items: left;
-        }
-
         .eliminar {
           justify-content: center;
           align-items: left;
@@ -49,6 +32,20 @@
           cursor: pointer;
         }
 
+        .formulario {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            width: 500px;
+            max-width: max-content;
+            max-height: max-content;
+            margin: 100px auto;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        
         .texto,
         .fechas {
           width: 100%;
@@ -69,55 +66,8 @@
   <header>
     <h1>El evento es : <%= @evento.eventName %></h1>
   </header>
-  <div class="formulario">
-    <div class="alertaDeError">
-      <% flash.each do |key, value| %>
-        <%= value %>
-      <%end%>
-    </div>
-    <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
-    <%= form_with url: update_evento_path, model: @evento do |us|%> 
-
-      <div>
-        <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
-        <%= us.text_field :eventName, class: 'texto' %>
-      </div>
-
-      <div>
-        <%= us.label :description, "La descripcion", style: "display: block" %>
-        <%= us.text_field :description, class: 'texto' %>
-      </div>
-
-      <div>
-        <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
-        <%= us.date_field :dia , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :start_time, "Empieza:", style: "display: block" %>
-        <%= us.time_field :start_time , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :end_time, "Termina:", style: "display: block" %>
-        <%= us.time_field :end_time , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
-        <%= us.time_field :plazoDeTiempo , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.submit %>
-      </div>
-
-      <div>
-        <%= link_to "Show this evento", @evento %> |
-      </div>
-
-    <%end%>
-  </div>
+  <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
+  <%= render partial:'formulario', locals: { redirect_path: update_evento_path } %>
 </body>
 
 

@@ -108,7 +108,8 @@
             <%= month_calendar do |date| %>
               <%= link_to date.day, new_evento_path, class: "btn btn-primary dia" %>
               <% @eventos.each do |evento| %>
-                <%if date.day == evento.start_time.day %>
+                <%if date.day == evento.dia.day && date.month == evento.dia.month %>
+
                     <div class="reunion">
                         <%= link_to edit_evento_path(id1: evento.id), class: "btn btn-primary dia" do %>
                             <div class="nombre">

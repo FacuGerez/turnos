@@ -5,30 +5,21 @@ class EventosController < ApplicationController
   end
 
   def new
-    @usuario = User.find(params[:id])
-    @evento = @usuario.eventos.new
   end
   
   def create
     @usuario = User.find(params[:id])
     @evenNuevo =  @usuario.eventos.build(evento_params)
 
-    empieza =  DateTime.parse(params[:evento][:start_time])
-    termina = DateTime.parse(params[:evento][:end_time])
-    plazoSeleccionado = Time.parse(params[:evento][:plazoDeTiempo])
-    diferenciaSegundos =  termina.to_time - empieza.to_time
-    diffMinutos = diferenciaSegundos / 60
-    diffHoras = diffMinutos / 60
-    diffDias = diffHoras / 24
-    pp diferenciaSegundos
-    pp diffMinutos
-    pp diffHoras
-    pp diffDias
-    if diffDias >= 1
-      flash[:success] = "Los dias no son iguales"
-      render :new, status: :unprocessable_entity
+    if validacion()
+      if @evenNuevo.save
+        redirect_to user_path(params[:id])
+      else
+        flash[:success] = "Hay campos sin completar"
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash[:success] = "Los dias son los mismos"
+      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos"
       render :new, status: :unprocessable_entity
     end
     
@@ -38,9 +29,7 @@ class EventosController < ApplicationController
   end
 
   def update
-    empieza =  DateTime.parse(params[:evento][:start_time])
-    termina = DateTime.parse(params[:evento][:end_time])
-    if empieza.day == termina.day && empieza.hour < termina.hour
+    if validacion()
       if @evento.update(evento_params)
         redirect_to user_path(params[:id])
       else
@@ -48,7 +37,7 @@ class EventosController < ApplicationController
         render :edit, status: :unprocessable_entity
       end
     else
-      flash[:success] = "Empieza tiene que ser primero que termina y en el mismo dia"
+      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -62,8 +51,17 @@ class EventosController < ApplicationController
     params.require(:evento).permit(:eventName,:description,:start_time,:end_time,:plazoDeTiempo,:dia)
   end
 
+  def validacion 
+    empieza =  Time.parse(params[:evento][:start_time])
+    termina = Time.parse(params[:evento][:end_time])
+    plazoSeleccionado = Time.parse(params[:evento][:plazoDeTiempo])
+    diferenciaSegundos =  termina - empieza
+    diffMinutos = diferenciaSegundos / 60
+    diffPlazo = (plazoSeleccionado.hour * 60) + (plazoSeleccionado.min)
+    return diffMinutos > 0 && diffMinutos >= diffPlazo
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_evento
       @evento = Evento.find(params[:id1])
     end

@@ -21,10 +21,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: max-content;
+            height: 400px;
+            width: 500px;
             max-width: max-content;
+            max-height: max-content;
             margin: 100px auto;
-            padding: 20px;
+            padding: 50px;
             background-color: #fff;
             border-radius: 5px;
         }
@@ -49,50 +51,8 @@
   <header>
     <h1>Crea tu nuevo Evento</h1>
   </header>
-  <div class="formulario">
-    <% flash.each do |key, value| %>
-      <div class="alertaDeError">
-        <%= value %>
-      </div>
-    <%end%>
-    <%= form_with url: create_evento_path, model: @evento do |us|%>
-      
-      <div>
-        <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
-        <%= us.text_field :eventName, class: 'texto' %>
-      </div>
-
-      <div>
-        <%= us.label :description, "La descripcion", style: "display: block" %>
-        <%= us.text_field :description, class: 'texto' %>
-      </div>
-
-      <div>
-        <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
-        <%= us.date_field :dia , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :start_time, "Empieza:", style: "display: block" %>
-        <%= us.time_field :start_time , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :end_time, "Termina:", style: "display: block" %>
-        <%= us.time_field :end_time , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
-        <%= us.time_field :plazoDeTiempo , class: 'fechas'%>
-      </div>
-
-      <div>
-        <%= us.submit %>
-      </div>
-          
-    <%end%>
-  </div>
+  <% @evento = Evento.new %>
+  <%= render partial:'formulario', locals: { redirect_path: create_evento_path } %>
 </body>
 
 
