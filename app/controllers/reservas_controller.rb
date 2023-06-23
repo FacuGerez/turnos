@@ -4,6 +4,17 @@ class ReservasController < ApplicationController
   # GET /reservas or /reservas.json
   def index
     @reservas = Reserva.all
+    @evento = Evento.find(params[:id1])
+    @botones = []
+    differencia = (@evento.end_time - @evento.start_time)
+    diffPlazo = (@evento.plazoDeTiempo.hour * 60) + (@evento.plazoDeTiempo.min)
+    cantidadBotones = differencia / diffPlazo
+    cantidadBotones = cantidadBotones.to_i
+    contador = @evento.start_time
+    cantidadBotones.times do |i|
+      @botones << "#{contador.strftime("%H:%M")}"
+      contador = contador + diffPlazo
+    end
   end
 
   # GET /reservas/1 or /reservas/1.json

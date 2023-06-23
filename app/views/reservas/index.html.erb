@@ -1,14 +1,107 @@
-<p style="color: green"><%= notice %></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Usuarios con Calendario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
 
-<h1>Reservas</h1>
+        header {
+            background-color: #3a6ea5;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
 
-<div id="reservas">
-  <% @reservas.each do |reserva| %>
-    <%= render reserva %>
-    <p>
-      <%= link_to "Show this reserva", reserva %>
-    </p>
-  <% end %>
-</div>
+        .container{
+          display: flex;
+          justify-content: center;
+          align-items: left;
+        }
 
-<%= link_to "New reserva", new_reserva_path %>
+        .calendar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: max-content;
+        }
+        .calendar table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .calendar th,
+        .calendar td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .calendar th {
+            background-color: #3a6ea5;
+            color: white;
+        }
+
+        .calendar td:hover {
+            background-color: #e0f0ff;
+        }
+
+        .calendar .selected {
+            background-color: #3a6ea5;
+            color: white;
+        }
+
+        .calendar .today {
+            background-color: #a5c9e0;
+            font-weight: bold;
+        }
+        .dia {
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        
+        .dia-del-evento {
+            color: green;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1><%= "Reservas del Evento: #{@evento.eventName}"  %></h1>
+    </header>
+    <div class= "container">
+      <div class="calendar">
+        <%= month_calendar do |date| %>
+          <% if date.day == @evento.dia.day && date.month == @evento.dia.month %>
+            <div class="dia-del-evento">
+              <%= date.day %> 
+            </div>
+          <% else %>
+            <div class="dia">
+              <%= date.day %> 
+            </div>
+          <% end %>
+          
+        <% end %>
+      </div>
+      <div class = "seleccion">
+        
+      </div>
+    </div>
+</body>

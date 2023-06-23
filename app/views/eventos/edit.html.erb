@@ -68,6 +68,7 @@
   </header>
   <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
   <%= render partial:'formulario', locals: { redirect_path: update_evento_path } %>
+  <%= link_to "Ver Evento y sus reservas", evento_path, class: "index-link"%> 
 </body>
 
 
