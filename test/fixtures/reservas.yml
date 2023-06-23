@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: MyString
+  horario: 2023-06-23 17:38:15
+
+two:
+  email: MyString
+  horario: 2023-06-23 17:38:15
