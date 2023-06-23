@@ -68,13 +68,18 @@
       </div>
 
       <div>
+        <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
+        <%= us.date_field :dia , class: 'fechas'%>
+      </div>
+
+      <div>
         <%= us.label :start_time, "Empieza:", style: "display: block" %>
-        <%= us.datetime_field :start_time , class: 'fechas'%>
+        <%= us.time_field :start_time , class: 'fechas'%>
       </div>
 
       <div>
         <%= us.label :end_time, "Termina:", style: "display: block" %>
-        <%= us.datetime_field :end_time , class: 'fechas'%>
+        <%= us.time_field :end_time , class: 'fechas'%>
       </div>
 
       <div>
