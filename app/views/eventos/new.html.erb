@@ -55,27 +55,33 @@
         <%= value %>
       </div>
     <%end%>
-    <%= form_with model: @evento do |us|%> 
+    <%= form_with url: create_evento_path, model: @evento do |us|%>
       
       <div>
-        <%= us.label "Nombre del evento :", style: "display: block" %>
+        <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
         <%= us.text_field :eventName, class: 'texto' %>
       </div>
 
       <div>
-        <%= us.label "La descripcion", style: "display: block" %>
+        <%= us.label :description, "La descripcion", style: "display: block" %>
         <%= us.text_field :description, class: 'texto' %>
       </div>
 
       <div>
-        <%= us.label "Empieza:", style: "display: block" %>
+        <%= us.label :start_time, "Empieza:", style: "display: block" %>
         <%= us.datetime_field :start_time , class: 'fechas'%>
       </div>
 
       <div>
-        <%= us.label "Termina:", style: "display: block" %>
+        <%= us.label :end_time, "Termina:", style: "display: block" %>
         <%= us.datetime_field :end_time , class: 'fechas'%>
       </div>
+
+      <div>
+        <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
+        <%= us.time_field :plazoDeTiempo , class: 'fechas'%>
+      </div>
+
       <div>
         <%= us.submit %>
       </div>
