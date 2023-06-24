@@ -52,6 +52,9 @@ class EventosController < ApplicationController
   end
 
   def validacion 
+    if params[:evento][:start_time] == "" || params[:evento][:end_time] == ""
+      return false
+    end
     empieza =  Time.parse(params[:evento][:start_time])
     termina = Time.parse(params[:evento][:end_time])
     plazoSeleccionado = Time.parse(params[:evento][:plazoDeTiempo])

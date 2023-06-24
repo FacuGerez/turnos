@@ -134,8 +134,8 @@
         <% end %>
       </div>
       <div class = "seleccion">
-        <% @botones.each do |boton,time| %>
-          <%= button_to boton, new_reserva_path(id1: @evento.id,horario:time), method: :get , class: "generar" %>
+        <% @botones.each do |boton,_| %>
+          <%= button_to boton, new_reserva_path(id1: @evento.id,horarios:@botones), method: :get , class: "generar" %>
         <% end %>
       </div>
     </div>

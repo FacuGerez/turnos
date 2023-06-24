@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :horario, style: "display: block" %>
-    <%= form.datetime_field :horario %>
+    <%= form.label :horario, "Confirma un horario posible:", style: "display: block" %>
+    <%= form.select :horario, options_for_select(@botones.keys) %>
   </div>
 
   <div>

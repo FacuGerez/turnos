@@ -1,50 +1,24 @@
 class ReservasController < ApplicationController
   before_action :set_reserva, only: %i[ show edit update destroy ]
 
-  # GET /reservas or /reservas.json
   def index
-    @reservas = Reserva.where(evento_id: params[:id1])
-    @evento = Evento.find(params[:id1])
-    @botones = {}
-    differencia = (@evento.end_time - @evento.start_time)
-    diffPlazo = (@evento.plazoDeTiempo.hour * 60 * 60) + (@evento.plazoDeTiempo.min * 60)
-    cantidadBotones = differencia / diffPlazo
-    cantidadBotones = cantidadBotones.to_i
-    contador = @evento.start_time
-    cantidadBotones.times do |i|
-      if validacionReserva
-        @botones[:"#{contador.strftime("%H:%M")}"] = contador
-        contador = contador + diffPlazo
-      end
-    end
+    generarOpcionesReserva
   end
 
-  # GET /reservas/1 or /reservas/1.json
   def show
   end
 
-  # GET /reservas/new
   def new
     @reserva = Reserva.new
+    generarOpcionesReserva
+  end
+
+  def create
+    @reserva = Reserva.new(reserva_params)
   end
 
   # GET /reservas/1/edit
   def edit
-  end
-
-  # POST /reservas or /reservas.json
-  def create
-    @reserva = Reserva.new(reserva_params)
-
-    respond_to do |format|
-      if @reserva.save
-        format.html { redirect_to reserva_url(@reserva), notice: "Reserva was successfully created." }
-        format.json { render :show, status: :created, location: @reserva }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @reserva.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /reservas/1 or /reservas/1.json
@@ -88,5 +62,22 @@ class ReservasController < ApplicationController
     # Only allow a list of trusted parameters through.
     def reserva_params
       params.require(:reserva).permit(:email, :horario)
+    end
+
+    def generarOpcionesReserva
+      @reservas = Reserva.where(evento_id: params[:id1])
+      @evento = Evento.find(params[:id1])
+      @botones = {}
+      differencia = (@evento.end_time - @evento.start_time)
+      diffPlazo = (@evento.plazoDeTiempo.hour * 60 * 60) + (@evento.plazoDeTiempo.min * 60)
+      cantidadBotones = differencia / diffPlazo
+      cantidadBotones = cantidadBotones.to_i
+      contador = @evento.start_time
+      cantidadBotones.times do |i|
+      if validacionReserva
+        @botones[:"#{contador.strftime("%H:%M")}"] = contador
+        contador = contador + diffPlazo
+      end
+    end
     end
 end
