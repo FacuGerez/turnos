@@ -8,8 +8,27 @@
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
+            justify-content: center;
+            align-items: center;
         }
 
+        .container{
+          background-color: white;
+          height: 500px;
+          width: 900px;
+          max-width: max-content;
+          max-height: max-content;
+          margin: 100px auto;
+          border-radius: 50px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 50px;
+        }
+        .container2{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
         header {
             background-color: #3a6ea5;
             padding: 20px;
@@ -17,20 +36,6 @@
             color: white;
         }
 
-        .container{
-          display: flex;
-          justify-content: center;
-          align-items: left;
-        }
-
-        .calendar {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 80%;
-            max-width: max-content;
-        }
         .calendar table {
             width: 100%;
             border-collapse: collapse;
@@ -79,13 +84,42 @@
             border-radius: 4px;
         }
 
+        .seleccion {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          max-width: max-content;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          border-radius: 4px;
+        }
+
+        .generar {
+          justify-content: center;
+          align-items: left;
+          color: black;
+          padding: 10px 20px;
+          text-align: center;
+          display: inline-block;
+          border-radius: 5px;
+          background-color: #f0f4f8;
+        }
+        .generar:hover {
+          background-color: #a5c9e0;
+          cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
+  <div class= "container">
     <header>
         <h1><%= "Reservas del Evento: #{@evento.eventName}"  %></h1>
     </header>
-    <div class= "container">
+    <div class= "container2">
       <div class="calendar">
         <%= month_calendar do |date| %>
           <% if date.day == @evento.dia.day && date.month == @evento.dia.month %>
@@ -97,11 +131,13 @@
               <%= date.day %> 
             </div>
           <% end %>
-          
         <% end %>
       </div>
       <div class = "seleccion">
-        
+        <% @botones.each do |boton,time| %>
+          <%= button_to boton, new_reserva_path(id1: @evento.id,horario:time), method: :get , class: "generar" %>
+        <% end %>
       </div>
     </div>
+  </div>
 </body>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/user/:id/evento/:id1/edit",to: "eventos#edit",as: :edit_evento
   patch "/user/:id/evento/:id1",to: "eventos#update", as: :update_evento
   delete "/user/:id/evento/:id1",to: "eventos#destroy", as: :delete_evento
-  get "evento/:id1/reservas", to:"reservas#index",as: :reservas
+  get "evento/:id1/reservas", to: "reservas#index" ,as: :reservas
+  get "evento/:id1/reservas/:horario", to: "reservas#new" , as: :new_reserva
   # resources :reservas
 end

@@ -3,17 +3,19 @@ class ReservasController < ApplicationController
 
   # GET /reservas or /reservas.json
   def index
-    @reservas = Reserva.all
+    @reservas = Reserva.where(evento_id: params[:id1])
     @evento = Evento.find(params[:id1])
-    @botones = []
+    @botones = {}
     differencia = (@evento.end_time - @evento.start_time)
-    diffPlazo = (@evento.plazoDeTiempo.hour * 60) + (@evento.plazoDeTiempo.min)
+    diffPlazo = (@evento.plazoDeTiempo.hour * 60 * 60) + (@evento.plazoDeTiempo.min * 60)
     cantidadBotones = differencia / diffPlazo
     cantidadBotones = cantidadBotones.to_i
     contador = @evento.start_time
     cantidadBotones.times do |i|
-      @botones << "#{contador.strftime("%H:%M")}"
-      contador = contador + diffPlazo
+      if validacionReserva
+        @botones[:"#{contador.strftime("%H:%M")}"] = contador
+        contador = contador + diffPlazo
+      end
     end
   end
 
@@ -66,6 +68,15 @@ class ReservasController < ApplicationController
       format.html { redirect_to reservas_url, notice: "Reserva was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def validacionReserva
+    @reservas.each do |reserva|
+      if reserva.horario.hour == contador.hour && reserva.horario.min == contador.min
+        return false
+      end
+    end
+    return true
   end
 
   private
