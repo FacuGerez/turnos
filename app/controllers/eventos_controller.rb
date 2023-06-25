@@ -15,11 +15,11 @@ class EventosController < ApplicationController
       if @evenNuevo.save
         redirect_to user_path(params[:id])
       else
-        flash[:success] = "Hay campos sin completar"
+        flash[:success] = "Falta seleccionar el dia"
         render :new, status: :unprocessable_entity
       end
     else
-      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos"
+      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos o no estan"
       render :new, status: :unprocessable_entity
     end
     
@@ -33,11 +33,11 @@ class EventosController < ApplicationController
       if @evento.update(evento_params)
         redirect_to user_path(params[:id])
       else
-        flash[:success] = "Hay campos sin completar"
+        flash[:success] = "Falta seleccionar el dia"
         render :edit, status: :unprocessable_entity
       end
     else
-      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos"
+      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos o no estan"
       render :edit, status: :unprocessable_entity
     end
   end
@@ -52,7 +52,7 @@ class EventosController < ApplicationController
   end
 
   def validacion 
-    if params[:evento][:start_time] == "" || params[:evento][:end_time] == ""
+    if params[:evento][:start_time] == "" || params[:evento][:end_time] == "" || params[:evento][:plazoDeTiempo] == ""
       return false
     end
     empieza =  Time.parse(params[:evento][:start_time])

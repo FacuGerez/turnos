@@ -34,13 +34,11 @@
 
         .formulario {
             display: flex;
-            justify-content: center;
-            align-items: center;
             height: 400px;
             width: 500px;
             max-width: max-content;
             max-height: max-content;
-            margin: 100px auto;
+            margin: 20px auto;
             padding: 50px;
             background-color: #fff;
             border-radius: 5px;
@@ -59,6 +57,14 @@
           padding: 5px;
           margin-bottom: 4px;
         }
+        .containerlink {
+          height: 10px;
+          width: 200px;
+          max-width: max-content;
+          max-height: max-content;
+          margin: 50px auto;
+
+        }
         
     </style>
 </head>
@@ -68,7 +74,10 @@
   </header>
   <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
   <%= render partial:'formulario', locals: { redirect_path: update_evento_path } %>
-  <%= link_to "Ver Evento y sus reservas", evento_path, class: "index-link"%> 
+  <div class= "containerlink">
+    <%= link_to "Ver Evento y sus reservas", evento_path %> 
+  </div>
+  
 </body>
 
 
