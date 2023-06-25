@@ -1,9 +1,76 @@
-<h1>New reserva</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Usuarios con Calendario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
 
-<%= render "form", reserva: @reserva %>
+        .container2{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 100px auto;
+        }
 
-<br>
+        .container{
+          background-color: white;
+          height: 100%;
+          width: 100%;
+          max-width: max-content;
+          max-height: max-content;
+          margin: 20px;
+          border-radius: 50px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 80px;
+        }
 
-<div>
-  <%= link_to "Back to reservas", reservas_path %>
-</div>
+        .cuadroTexto{
+          display: flex;
+          height: 50px;
+          width: 500px;
+          max-width: max-content;
+          max-height: max-content;
+        }
+
+    </style>
+</head>
+<body>
+  <div class= "container2">
+    <div class= "container">
+      <h1>Nueva Reserva</h1>
+      <%= render "form", reserva: @reserva %>
+      <br>
+      <div>
+        <%= link_to "Back to reservas", reservas_path %>
+      </div>
+    </div>
+    <div class= "container">
+      <h1>Aviso importante:</h1>
+      <div class= "cuadroTexto">
+        <%= "
+          Si no estas registrado la reserva seguira en pie pero esta no se mandara a tu usuario
+          Si quieres tener tu catalogo de reservas en tu cuenta. Luego de hacer la reserva o antes puedes
+          generarte tu propia cuenta para tener asi todas tus reservas y a que eventos y personas te sumaste
+        "%>
+      </div>
+    </div>
+  </div>
+  
+</body>
+
+
+
+
+
+
+
+
+
+
