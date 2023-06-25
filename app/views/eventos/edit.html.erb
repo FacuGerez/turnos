@@ -18,18 +18,18 @@
         }
 
         .eliminar {
-          justify-content: center;
-          align-items: left;
-          color: black;
+          background-color: #4CAF50;
+          color: white;
           padding: 10px 20px;
           text-align: center;
+          text-decoration: none;
           display: inline-block;
-          border-radius: 5px;
-          background-color: #f0f4f8;
+          font-size: 16px;
+          border-radius: 4px;
         }
+
         .eliminar:hover {
-          background-color: #a5c9e0;
-          cursor: pointer;
+          background-color: #45a049;
         }
 
         .formulario {
@@ -72,7 +72,7 @@
   <header>
     <h1>El evento es : <%= @evento.eventName %></h1>
   </header>
-  <%= button_to "Eliminar este evento", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
+  <%= button_to "Delete this event", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
   <%= render partial:'formulario', locals: { redirect_path: update_evento_path } %>
   <div class= "containerlink">
     <%= link_to "Ver Evento y sus reservas", evento_path %> 
