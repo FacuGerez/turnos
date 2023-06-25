@@ -17,7 +17,7 @@ class ReservasController < ApplicationController
     @evento = Evento.find(params[:id1])
     @reserva = @evento.reservas.build(reserva_params)
     if @reserva.save
-      redirect_to reservas_path #tengo que hacer q redirija a show
+      redirect_to view_reserva_path(id1:params[:id1],id2:@reserva.id)
     else
       flash[:success] = "Introduce un correo electronico"
       render :new, status: :unprocessable_entity

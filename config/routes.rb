@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get "evento/:id1/reservas", to: "reservas#index" ,as: :reservas
   get "evento/:id1/reservas/newReserva", to: "reservas#new" , as: :new_reserva
   post "evento/:id1/reservas", to: "reservas#create"
+  get "evento/:id1/vistaReserva:id2", to: "reservas#show", as: :view_reserva
   # resources :reservas
 end
