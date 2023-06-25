@@ -2,6 +2,7 @@ class EventosController < ApplicationController
   before_action :set_evento, only: %i[ show edit update destroy ]
 
   def show
+    @reservas = Reserva.where(evento_id: params[:id1])
   end
 
   def new

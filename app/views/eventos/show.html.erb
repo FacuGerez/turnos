@@ -16,11 +16,26 @@
             text-align: center;
             color: white;
         }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - 80px);
+        
+        .container{
+          max-width: max-content;
+          max-height: max-content;
+          margin: 20px auto;
+        }
+
+        .Evento,
+        .Reserva {
+            background-color: white;
+            margin: 20px auto;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 80px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .Reserva {
+            padding: 20px;
         }
     </style>
 </head>
@@ -37,6 +52,19 @@
             <p><%= @evento.end_time %></p>
             <p><%= @evento.plazoDeTiempo %></p>
             <h3>Comparte este link para que reserven un turno: <%= link_to reservas_path,:reservas, class: "index-link" %></h3>
+        </div>
+        <div class="Reserva">
+            <% @reservas.each do |reserva|%>
+                <div style="color: green">
+                    <ul>
+                        <li>
+                            <h2>Tenes una reserva a nombre de este correo: <%= reserva.email %></h2>
+                            <h2>A partir de este horario:<%= reserva.horario.strftime("%H-%M") %></h2>
+                        </li>
+                    </ul> 
+                </div>
+                
+            <% end %>
         </div>
     </div>
 </body>

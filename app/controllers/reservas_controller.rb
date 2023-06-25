@@ -50,7 +50,7 @@ class ReservasController < ApplicationController
 
   private
     def set_reserva
-      @reserva = Reserva.find(params[:id])
+      @reserva = Reserva.find(params[:id2])
     end
 
     def reserva_params

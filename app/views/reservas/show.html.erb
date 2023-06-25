@@ -1,10 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizacion Eventos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
 
-<%= render @reserva %>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 80px);
+        }
 
-<div>
-  <%= link_to "Edit this reserva", edit_reserva_path(@reserva) %> |
-  <%= link_to "Back to reservas", reservas_path %>
+        .Evento{
+            background-color: white;
+            margin: 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 80px;
+        }
+            
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="Evento">
+          <h1 style="color: green">Reserva Exitosa!!</h1>
+          <br>
+          <h2>Reservaste al correo: <%= @reserva.email %></h2>
+          <h2>A partir de este horario:<%= @reserva.horario %></h2>
+        </div>
+    </div>
+    <div>
+      <%= link_to "Back to reservas", reservas_path %>
+    </div>
+</body>
 
-  <%= button_to "Destroy this reserva", @reserva, method: :delete %>
-</div>
+

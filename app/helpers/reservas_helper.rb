@@ -7,18 +7,18 @@ module ReservasHelper
         diffPlazo = (@evento.plazoDeTiempo.hour * 60 * 60) + (@evento.plazoDeTiempo.min * 60)
         cantidadBotones = differencia / diffPlazo
         cantidadBotones = cantidadBotones.to_i
-        contador = @evento.start_time
+        @contador = @evento.start_time
         cantidadBotones.times do |i|
             if validacionReserva
-                @botones[:"#{contador.strftime("%H:%M")}"] = contador
-                contador = contador + diffPlazo
+                @botones[:"#{@contador.strftime("%H:%M")}"] = @contador
             end
+            @contador = @contador + diffPlazo
         end
     end
 
     def validacionReserva
         @reservas.each do |reserva|
-          if reserva.horario.hour == contador.hour && reserva.horario.min == contador.min
+          if reserva.horario.hour == @contador.hour && reserva.horario.min == @contador.min
             return false
           end
         end
