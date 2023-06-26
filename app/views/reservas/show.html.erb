@@ -24,7 +24,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 80px;
         }
-            
+
     </style>
 </head>
 <body>
@@ -33,7 +33,7 @@
           <h1 style="color: green">Reserva Exitosa!!</h1>
           <br>
           <h2>Reservaste al correo: <%= @reserva.email %></h2>
-          <h2>A partir de este horario:<%= @reserva.horario %></h2>
+          <h2>A partir de este horario:<%= @evento.dia.strftime("%d-%B-%Y") %> a las <%= @reserva.horario.strftime("%I-%M %p") %></h2>
         </div>
     </div>
     <div>

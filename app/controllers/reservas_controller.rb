@@ -6,6 +6,7 @@ class ReservasController < ApplicationController
   end
 
   def show
+    @evento = Evento.find(params[:id1])
     flash.clear
   end
 
@@ -57,5 +58,5 @@ class ReservasController < ApplicationController
       params.require(:reserva).permit(:email, :horario)
     end
 
-    
+
 end

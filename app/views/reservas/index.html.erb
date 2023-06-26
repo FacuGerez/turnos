@@ -14,8 +14,8 @@
 
         .container{
           background-color: white;
-          height: 500px;
-          width: 900px;
+          height: 100%;
+          width: 100%;
           max-width: max-content;
           max-height: max-content;
           margin: 100px auto;
@@ -28,7 +28,7 @@
           justify-content: center;
           align-items: center;
         }
-        
+
         header {
             background-color: #3a6ea5;
             padding: 20px;
@@ -62,10 +62,11 @@
             color: white;
         }
 
-        .calendar .today {
-            background-color: #a5c9e0;
-            font-weight: bold;
+        .calendar .dia-del-evento {
+            background-color: red;
+            color: black;
         }
+
         .dia {
             color: black;
             padding: 10px 20px;
@@ -74,14 +75,19 @@
             display: inline-block;
             border-radius: 4px;
         }
-        
+
         .dia-del-evento {
-            color: green;
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            border-radius: 4px;
+            border-radius: 5px;
+        }
+
+        .scrollable {
+          overflow-y: scroll;
+          height: 350px;
+          padding: 20px;
         }
 
         .seleccion {
@@ -125,19 +131,21 @@
         <%= month_calendar do |date| %>
           <% if date.day == @evento.dia.day && date.month == @evento.dia.month %>
             <div class="dia-del-evento">
-              <%= date.day %> 
+              <%= date.day %>
             </div>
           <% else %>
             <div class="dia">
-              <%= date.day %> 
+              <%= date.day %>
             </div>
           <% end %>
         <% end %>
       </div>
       <div class = "seleccion">
-        <% @botones.each do |boton,_| %>
-          <%= button_to boton, new_reserva_path(id1: @evento.id,horarios:@botones), method: :get , class: "generar" %>
-        <% end %>
+        <div class="scrollable">
+          <% @botones.each do |boton,_| %>
+            <%= button_to boton, new_reserva_path(id1: @evento.id,horarios:@botones), method: :get , class: "generar" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

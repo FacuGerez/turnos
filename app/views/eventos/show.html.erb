@@ -16,7 +16,7 @@
             text-align: center;
             color: white;
         }
-        
+
         .container{
           max-width: max-content;
           max-height: max-content;
@@ -25,18 +25,16 @@
 
         .Evento,
         .Reserva {
+            text-align: center;
             background-color: white;
             margin: 20px auto;
             border-radius: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 80px;
+            padding: 50px;
             height: 100%;
             width: 100%;
         }
 
-        .Reserva {
-            padding: 20px;
-        }
     </style>
 </head>
 <body>
@@ -47,23 +45,27 @@
         <div class="Evento">
             <h1><%= @evento.eventName %></h1>
             <h2><%= @evento.description %></h2>
-            <p><%= @evento.dia %></p>
-            <p><%= @evento.start_time %></p>
-            <p><%= @evento.end_time %></p>
-            <p><%= @evento.plazoDeTiempo %></p>
+            <p>El dia del evento: <%= @evento.dia.strftime("%d-%B-%Y") %></p>
+            <p>Desde: <%= @evento.start_time.strftime("%I:%M %p") %></p>
+            <p>Hasta: <%= @evento.end_time.strftime("%I:%M %p") %></p>
+            <p>Con cada reunion de un tiempo: <%= @evento.plazoDeTiempo.strftime("%H hs ; %M min")%></p>
             <h3>Comparte este link para que reserven un turno: <%= link_to reservas_path,:reservas, class: "index-link" %></h3>
         </div>
         <div class="Reserva">
-            <% @reservas.each do |reserva|%>
-                <div style="color: green">
-                    <ul>
-                        <li>
-                            <h2>Tenes una reserva a nombre de este correo: <%= reserva.email %></h2>
-                            <h2>A partir de este horario:<%= reserva.horario.strftime("%H-%M") %></h2>
-                        </li>
-                    </ul> 
-                </div>
-                
+            <% if @reservas.size == 0 %>
+                <h2>Nadie reservo todavia a este evento</h2>
+            <% else %>
+                <% @reservas.each do |reserva|%>
+                    <div style="color: red">
+                        <ul>
+                            <li>
+                                <h2>Tenes una reserva a nombre de: <%= reserva.email %></h2>
+                                <h2>A partir de las:<%= reserva.horario.strftime("%I-%M %p") %></h2>
+                            </li>
+                        </ul>
+                    </div>
+
+                <% end %>
             <% end %>
         </div>
     </div>
