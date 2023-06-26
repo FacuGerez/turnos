@@ -19,7 +19,7 @@
 
 
 <% generarOpcionesReserva %>
-<%= form_with(model: reserva) do |form| %>
+<%= form_with url: redirect_path,model: reserva do |form| %>
   <% flash.each do |key, value| %>
     <div style="color: red">
       <ul>

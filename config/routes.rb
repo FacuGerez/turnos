@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   delete "/user/:id/evento/:id1",to: "eventos#destroy", as: :delete_evento
   get "evento/:id1/reservas", to: "reservas#index" ,as: :reservas
   get "evento/:id1/reservas/newReserva", to: "reservas#new" , as: :new_reserva
-  post "evento/:id1/reservas", to: "reservas#create"
+  post "evento/:id1/reservas", to: "reservas#create", as: :create_reserva
   get "evento/:id1/vistaReserva:id2", to: "reservas#show", as: :view_reserva
+  get '/user/:id/reserva/:id1/:id2' , to: "reservas#edit", as: :edit_reserva
   # resources :reservas
 end

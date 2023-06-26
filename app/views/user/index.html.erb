@@ -83,7 +83,7 @@
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            border-radius: 4px;
+            border-radius: 15px;
         }
         .dia:hover {
             background-color: #a5c9e0;
@@ -95,6 +95,15 @@
             background-color: #e0f0ff;
             border-radius: 4px;
             padding: 5px;
+        }
+        .container2 {
+            text-align: center;
+            background-color: white;
+            margin: 10px auto;
+            border-radius: 100px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 50%;
         }
     </style>
 </head>
@@ -127,6 +136,23 @@
               <% end %>
             <% end %>
         </div>
+    </div>
+    <div class= "container2">
+        <h2>Reservaste a los siguientes eventos:</h2>
+        <% @eventoYReservas.each do |reserva,evento| %>
+            <%= link_to edit_reserva_path(id1: evento.id,id2: reserva.id), class: "btn btn-primary dia" do %>
+                <div style="color: green">
+                    <ul>
+                        <li>
+                            <h3>Nombre: <%= evento.eventName %></h3>
+                            <p>El dia: <%= evento.dia.strftime("%d-%B-%Y") %></p>
+                            <p>Desde las: <%= reserva.horario.strftime("%I-%M %p") %></p>
+                            <p>La duracion de la reunion sera de: <%= evento.plazoDeTiempo.strftime("%H hs ; %M min") %></p>
+                        </li>
+                    </ul>
+                </div>
+            <% end %>
+        <% end %>
     </div>
 </body>
 </html>

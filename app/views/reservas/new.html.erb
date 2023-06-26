@@ -45,7 +45,7 @@
   <div class= "container2">
     <div class= "container">
       <h1>Nueva Reserva</h1>
-      <%= render "form", reserva: @reserva %>
+      <%= render "form", reserva: @reserva, redirect_path: create_reserva_path(params[:id1])%>
       <br>
       <div>
         <%= link_to "Back to reservas", reservas_path %>
@@ -62,7 +62,7 @@
       </div>
     </div>
   </div>
-  
+
 </body>
 
 
