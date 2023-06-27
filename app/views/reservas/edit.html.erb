@@ -1,7 +1,112 @@
-<h1>Editing reserva</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Usuarios con Calendario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+        }
 
-<%= render "form", reserva: @reserva, redirect_path: user_path(params[:id])%>
+        .eliminar {
+          background-color: #4CAF50;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border-radius: 4px;
+          margin: 10px auto;
+        }
 
-<br>
+        .eliminar:hover {
+          background-color: #45a049;
+        }
+
+        .container2{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 100px auto;
+        }
+
+        .container{
+          background-color: white;
+          height: 100%;
+          width: 400px;
+          margin: 20px;
+          border-radius: 50px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 80px;
+        }
+
+        .cuadroTexto{
+          display: flex;
+          height: 50px;
+          width: 500px;
+          max-width: max-content;
+          max-height: max-content;
+        }
+
+    </style>
+</head>
+<body>
+    <%= button_to "Eliminar mi reserva", delete_reserva_path, method: :delete , class: "eliminar" %>
+    <div class= "container2">
+        <div class= "container">
+            <h1>El evento al que estas inscripto es:
+                <div>
+                    <%= @evento.eventName %>
+                </div>
+            </h1>
+            <h3>Descripcion:<%= @evento.description %></h3>
+            <br>
+            <%= "Empieza desde las #{@evento.start_time.strftime("%I:%M %p")} y termina a las #{@evento.end_time.strftime("%I:%M %p")}" %>
+            <br>
+            <h3>El horario al que te inscribiste es:
+                <div style="color: green">
+                    <%= @reserva.horario.strftime("%I:%M %p") %>
+                </div>
+            </h3>
+            <div style="color: red">
+                <%= "PRECAUCION: Puedes seleccionar entre los horarios que quedan o simplemente volver atras para no perder tu horario seleccionado" %>
+            </div>
 
 
+        </div>
+        <div class= "container">
+            <h1>Cambia el horario de tu reserva</h1>
+            <h4><%= "Reservaste al correo #{@reserva.email}" %><h4>
+            <% generarOpcionesReserva %>
+            <%= form_with url: update_reserva_path,model: @reserva do |form| %>
+                <% flash.each do |key, value| %>
+                    <div style="color: red">
+                        <ul>
+                            <li><%= value %></li>
+                        </ul>
+                    </div>
+                <% end %>
+
+                <div>
+                    <%= form.label :horario, "Horarios disponibles:", style: "display: block" %>
+                    <%= form.select :horario, options_for_select(@botones.keys), class: "select"%>
+                </div>
+                <br>
+
+                <div>
+                    <%= form.submit %>
+                </div>
+            <% end %>
+            <br>
+            <div>
+                <%= link_to "Volver a la pagina principal", user_path(params[:id]) %>
+            </div>
+        </div>
+    </div>
+
+</body>

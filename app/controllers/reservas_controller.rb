@@ -26,27 +26,21 @@ class ReservasController < ApplicationController
   end
 
   def edit
+    @evento = Evento.find(params[:id1])
   end
 
   def update
-    respond_to do |format|
-      if @reserva.update(reserva_params)
-        format.html { redirect_to reserva_url(@reserva), notice: "Reserva was successfully updated." }
-        format.json { render :show, status: :ok, location: @reserva }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @reserva.errors, status: :unprocessable_entity }
-      end
+    if @reserva.update(reserva_params)
+      redirect_to user_path(params[:id])
+    else
+      flash[:success] = "Algo salio mal???"
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @reserva.destroy
-
-    respond_to do |format|
-      format.html { redirect_to reservas_url, notice: "Reserva was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to user_path(params[:id])
   end
 
   private
