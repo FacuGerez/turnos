@@ -23,22 +23,22 @@
 
       <div>
         <%= us.label :start_time, "Empieza:", style: "display: block" %>
-        <%= us.time_field :start_time , class: 'fechas'%>
+        <%= us.time_field :start_time, step: 600, ampm: true , class: 'fechas'%>
       </div>
 
       <div>
         <%= us.label :end_time, "Termina:", style: "display: block" %>
-        <%= us.time_field :end_time , class: 'fechas'%>
+        <%= us.time_field :end_time, step: 600, ampm: true , class: 'fechas'%>
       </div>
 
       <div>
         <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
-        <%= us.time_field :plazoDeTiempo , class: 'fechas'%>
+        <%= us.time_field :plazoDeTiempo, ampm: false , class: 'fechas'%>
       </div>
 
       <div>
         <%= us.submit %>
       </div>
-          
+
     <%end%>
   </div>
