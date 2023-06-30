@@ -115,7 +115,7 @@
     <%= link_to "New event", new_evento_path, class: "btn btn-primary redireccion" %>
     <div class="container">
         <div class="calendar">
-            <%= month_calendar(events: @eventos) do |date, eventos| %>
+            <%= month_calendar do |date| %>
               <%= link_to date.day, new_evento_path, class: "btn btn-primary dia" %>
               <% @eventos.each do |evento| %>
                 <%if date.day == evento.dia.day && date.month == evento.dia.month %>
