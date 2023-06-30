@@ -21,7 +21,6 @@ class UserController < ApplicationController
     if @user.save
       redirect_to users_path(@user.id)
     else
-      flash[:success] = "Hay campos sin completar"
       render :new, status: :unprocessable_entity
     end
   end

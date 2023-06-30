@@ -9,11 +9,12 @@
     }
 
     .container {
-      max-width: 400px;
+      height: 100%;
+      width: 400px;
       margin: 100px auto;
-      padding: 20px;
+      padding: 50px;
       background-color: #fff;
-      border-radius: 5px;
+      border-radius: 50px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -55,23 +56,24 @@
   <div class="container">
     <h2>Log In user</h2>
     <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>">
-      <%= value %>
+      <div style="color: red">
+        <%= value %>
       </div>
     <%end%>
+    <br>
     <%= form_with url: find_user_path do |us|%>
 
       <div>
-        <%= us.label :email %>
+        <%= us.label :email, "Correo electronico" %>
         <%= us.email_field :email %>
       </div>
 
       <div>
-        <%= us.label :password %>
+        <%= us.label :password, "Contraseña" %>
         <%= us.password_field :password %>
       </div>
 
-      <%= us.submit %>
-      <%= link_to "¿No te has registrado aun?", :new_user1, class: "index-link" %>
+      <%= us.submit "Login" %>
+      <%= link_to "¿No te has registrado aun?", :new_user, class: "index-link" %>
     <%end%>
 </body>
