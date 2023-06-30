@@ -18,7 +18,7 @@ class User < ApplicationRecord
             message: :invalid
         }
     validates :password, presence: true, length: {minimum:6, maximum:24}
-    has_many :eventos
+    has_many :eventos, dependent: :destroy
     before_save :downcase_attributes
 
     private
