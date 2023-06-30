@@ -53,7 +53,7 @@
       <%= value %>
       </div>
     <%end%>
-    <%= form_with url: create_user1_path ,model:@user do |us|%>
+    <%= form_with url: create_user_path ,model:@user do |us|%>
       <% @user.errors.full_messages.each do |error|%>
         <div>
           <%= error %>
