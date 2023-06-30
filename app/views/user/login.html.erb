@@ -59,19 +59,19 @@
       <%= value %>
       </div>
     <%end%>
-    <%= form_with model:@User do |us|%> 
-      
+    <%= form_with url: find_user_path do |us|%>
+
       <div>
         <%= us.label :email %>
-        <%= us.text_field :email %>
+        <%= us.email_field :email %>
       </div>
 
       <div>
         <%= us.label :password %>
-        <%= us.text_field :password %>
+        <%= us.password_field :password %>
       </div>
 
       <%= us.submit %>
-      <%= link_to "¿No te has registrado aun?", :new_user, class: "index-link" %>
+      <%= link_to "¿No te has registrado aun?", :new_user1, class: "index-link" %>
     <%end%>
 </body>

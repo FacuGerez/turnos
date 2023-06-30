@@ -11,4 +11,36 @@ class UserController < ApplicationController
     end
     flash.clear
   end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path(@user.id)
+    else
+      flash[:success] = "Hay campos sin completar"
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def login
+  end
+
+  def serch
+    @user = User.find_by("email = :login",{login: params[:email]})
+    if @user.authenticate(params[:password])
+      redirect_to users_path(@user.id)
+    else
+      flash[:success] = "La contraseña o el correo introducido no son correctos"
+      render :login, status: :unprocessable_entity
+    end
+  end
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :surname, :email, :password)
+    end
 end

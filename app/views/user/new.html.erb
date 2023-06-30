@@ -21,10 +21,7 @@
       text-align: center;
     }
 
-    input[type="name"],
-    input[type="surname"],
-    input[type="email"],
-    input[type="password"] {
+    .texto {
       width: 100%;
       padding: 10px;
       margin-bottom: 20px;
@@ -56,40 +53,34 @@
       <%= value %>
       </div>
     <%end%>
-    <%= form_with model:@User do |us|%>
+    <%= form_with url: create_user1_path ,model:@user do |us|%>
       <% @user.errors.full_messages.each do |error|%>
         <div>
           <%= error %>
         </div>
       <%end%>
       <div>
-        <div>
-          <%= alert %>
-          <%= notice %>
-        </div>
-      </div>
-      <div>
         <%= us.label :name %>
-        <%= us.text_field :name %>
+        <%= us.text_field :name, class: "texto" %>
       </div>
-      
+
       <div>
         <%= us.label :surname %>
-        <%= us.text_field :surname %>
+        <%= us.text_field :surname, class: "texto" %>
       </div>
-      
+
       <div>
         <%= us.label :email %>
-        <%= us.text_field :email %>
+        <%= us.email_field :email, class: "texto" %>
       </div>
 
       <div>
         <%= us.label :password %>
-        <%= us.text_field :password %>
+        <%= us.password_field :password, class: "texto" %>
       </div>
 
       <%= us.submit %>
-      
+
     <%end%>
     <div></div>
   </div>
