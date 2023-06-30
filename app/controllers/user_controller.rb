@@ -6,6 +6,7 @@ class UserController < ApplicationController
     @misReservas = Reserva.where(email: @user.email)
     @eventoYReservas = {}
     @misReservas.each do |reserva|
+      pp reserva.evento.eventName
       @event = Evento.find(reserva.evento_id)
       @eventoYReservas[reserva] = @event
     end
@@ -19,7 +20,7 @@ class UserController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path(@user.id)
+      redirect_to user_path(@user.id)
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,7 +32,7 @@ class UserController < ApplicationController
   def serch
     @user = User.find_by("email = :login",{login: params[:email]})
     if @user&.authenticate(params[:password])
-      redirect_to users_path(@user.id)
+      redirect_to user_path(@user.id)
     else
       flash[:success] = "La contraseña o el correo introducido no son correctos"
       render :login, status: :unprocessable_entity

@@ -1,10 +1,12 @@
 <div class="formulario">
     <%= form_with url: redirect_path, model: @evento do |us|%>
-      <% flash.each do |key, value| %>
-        <div class="alertaDeError">
-          <h3><%= value %></h3>
-        </div>
-      <%end%>
+      <% @evento.errors.full_messages.each do |error|%>
+          <div style="color: red">
+            <%= error %>
+            <br>
+          </div>
+        <%end%>
+
 
       <div>
         <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
@@ -20,6 +22,7 @@
         <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
         <%= us.date_field :dia , class: 'fechas'%>
       </div>
+      <br>
 
       <div>
         <%= us.label :start_time, "Empieza:", style: "display: block" %>
@@ -30,6 +33,7 @@
           class: 'fechas'
         %>
       </div>
+      <br>
 
       <div>
         <%= us.label :end_time, "Termina:", style: "display: block" %>
@@ -40,6 +44,7 @@
           class: 'fechas'
         %>
       </div>
+      <br>
 
       <div>
         <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
@@ -50,10 +55,13 @@
           class: "fechas"
         %>
       </div>
+      <br>
 
       <div>
         <%= us.submit %>
       </div>
-
+      <%if params[:id1] %>
+        <%= link_to "Ver Evento y sus reservas", evento_path%>
+      <%end%>
     <%end%>
   </div>

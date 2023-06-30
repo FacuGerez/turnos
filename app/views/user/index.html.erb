@@ -37,14 +37,15 @@
             justify-content: center;
             align-items: center;
             height: calc(100vh - 80px);
+            margin: 10px auto;
         }
 
         .calendar {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 80%;
+            padding: 40px;
+            width: 100%;
             max-width: max-content;
         }
         .calendar table {
@@ -114,7 +115,7 @@
     <%= link_to "New event", new_evento_path, class: "btn btn-primary redireccion" %>
     <div class="container">
         <div class="calendar">
-            <%= month_calendar do |date| %>
+            <%= month_calendar(events: @eventos) do |date, eventos| %>
               <%= link_to date.day, new_evento_path, class: "btn btn-primary dia" %>
               <% @eventos.each do |evento| %>
                 <%if date.day == evento.dia.day && date.month == evento.dia.month %>

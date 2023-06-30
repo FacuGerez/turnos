@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post "/register", to: "user#create", as: :create_user
   get '/login' , to: "user#login", as: :serch_user
   post "/login", to: "user#serch", as: :find_user
-  get '/user/:id' , to: "user#index", as: :users
+  get '/user/:id' , to: "user#index", as: :user
 
 
   get "evento/:id1", to:"eventos#show",as: :evento
