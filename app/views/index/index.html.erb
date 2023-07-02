@@ -1,0 +1,74 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Usuarios con Calendario</title>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-image: url("https://www.tenveo-video-conference-es.com/Content/upload/2018180872/201808291647339426669.jpg");
+        }
+
+        header{
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
+        .redireccion {
+            background: rgba(208,241,255,0.5);
+            margin: 1px;
+            border-radius: 40px;
+            display: inline-block;
+            color: black;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .redireccion:hover {
+            background-color: #45a049;
+        }
+
+        .container{
+            display: flex;
+            margin: 120px auto;
+            justify-content: right;
+            align-items: right;
+            background-size: cover;
+        }
+        .containerInfo {
+            width: 400px;
+            height: 400px;;
+            text-align: center;
+            background-color: white;
+            margin: 10px auto;
+            border-radius: 100px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <%= link_to "Registrarse", new_user_path, class: "btn btn-primary redireccion" %>
+        <%= link_to "Login", serch_user_path, class: "btn btn-primary redireccion" %>
+    </header>
+    <div class="container">
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="container"></div>
+        <div class="containerInfo">
+            <FONT FACE="roman" SIZE=6 COLOR="red">
+                <h1>Calendi Fiuba</h1>
+            </FONT>
+            <h1>Calendi Fiuba</h1>
+        </div>
+    </div>
+</body>
+</html>
