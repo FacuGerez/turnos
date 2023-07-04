@@ -44,20 +44,20 @@
 <body>
   <div class= "container2">
     <div class= "container">
-      <h1>Nueva Reserva</h1>
+      <h1>New reservation</h1>
       <%= render "form", reserva: @reserva, redirect_path: create_reserva_path(params[:id1])%>
       <br>
       <div>
-        <%= link_to "Back to reservas", reservas_path %>
+        <%= link_to "Back to reservations", reservas_path %>
       </div>
     </div>
     <div class= "container">
-      <h1>Aviso importante:</h1>
+      <h1>Important announcement:</h1>
       <div class= "cuadroTexto">
         <%= "
-          Si no estas registrado la reserva seguira en pie pero esta no se mandara a tu usuario
-          Si quieres tener tu catalogo de reservas en tu cuenta. Luego de hacer la reserva o antes puedes
-          generarte tu propia cuenta para tener asi todas tus reservas y a que eventos y personas te sumaste
+          If you are not registered, the reservation will continue, but it will not be sent to your user
+          If you want to have your reservation catalog in your account. After making the reservation or before
+          you can create your own account to have all your reservations and which events and people you joined
         "%>
       </div>
     </div>

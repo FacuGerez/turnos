@@ -64,16 +64,17 @@
     <%= form_with url: find_user_path do |us|%>
 
       <div>
-        <%= us.label :email, "Correo electronico" %>
+        <%= us.label :email, "Enter your email" %>
         <%= us.email_field :email %>
       </div>
 
       <div>
-        <%= us.label :password, "Contraseña" %>
+        <%= us.label :password, "Your password" %>
         <%= us.password_field :password %>
       </div>
 
       <%= us.submit "Login" %>
-      <%= link_to "¿No te has registrado aun?", :new_user, class: "index-link" %>
+      <br>
+      <%= link_to "You have not yet registered?", :new_user, class: "index-link" %>
     <%end%>
 </body>

@@ -9,23 +9,23 @@
 
 
       <div>
-        <%= us.label :eventName, "Nombre del evento :", style: "display: block" %>
+        <%= us.label :eventName, "Event name: ", style: "display: block" %>
         <%= us.text_field :eventName, class: 'texto' %>
       </div>
 
       <div>
-        <%= us.label :description, "La descripcion", style: "display: block" %>
+        <%= us.label :description, style: "display: block" %>
         <%= us.text_field :description, class: 'texto' %>
       </div>
 
       <div>
-        <%= us.label :dia, "El dia del evento es:", style: "display: block" %>
+        <%= us.label :dia, "Event day: ", style: "display: block" %>
         <%= us.date_field :dia , class: 'fechas'%>
       </div>
       <br>
 
       <div>
-        <%= us.label :start_time, "Empieza:", style: "display: block" %>
+        <%= us.label :start_time, "Start at: ", style: "display: block" %>
         <%= us.time_select :start_time,
           :combined => true,
           :minute_interval => 10,
@@ -36,7 +36,7 @@
       <br>
 
       <div>
-        <%= us.label :end_time, "Termina:", style: "display: block" %>
+        <%= us.label :end_time, "End at: ", style: "display: block" %>
         <%= us.time_select :end_time,
           :combined => true,
           :minute_interval => 10,
@@ -47,7 +47,7 @@
       <br>
 
       <div>
-        <%= us.label :plazoDeTiempo , "Plazo de las reuniones:", style: "display: block" %>
+        <%= us.label :plazoDeTiempo , "The duration of the meeting: ", style: "display: block" %>
         <%= us.time_select :plazoDeTiempo,
           :combined => true,
           :minute_interval => 10,
@@ -60,8 +60,9 @@
       <div>
         <%= us.submit %>
       </div>
+      <br>
       <%if params[:id1] %>
-        <%= link_to "Ver Evento y sus reservas", evento_path%>
+        <%= link_to "View this event and the reservations", evento_path%>
       <%end%>
     <%end%>
   </div>

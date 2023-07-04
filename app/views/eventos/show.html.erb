@@ -39,28 +39,28 @@
 </head>
 <body>
     <header>
-        <%= "Aca tenemos al : #{@evento.eventName}" %>
+        <%= "This is the event : #{@evento.eventName}" %>
     </header>
     <div class="container">
         <div class="Evento">
             <h1><%= @evento.eventName %></h1>
             <h2><%= @evento.description %></h2>
-            <p>El dia del evento: <%= @evento.dia.strftime("%d-%B-%Y") %></p>
-            <p>Desde: <%= @evento.start_time.strftime("%I:%M %p") %></p>
-            <p>Hasta: <%= @evento.end_time.strftime("%I:%M %p") %></p>
-            <p>Con cada reunion de un tiempo: <%= @evento.plazoDeTiempo.strftime("%H hs ; %M min")%></p>
-            <h3>Comparte este link para que reserven un turno: <%= link_to reservas_path,:reservas, class: "index-link" %></h3>
+            <p>The day is: <%= @evento.dia.strftime("%d-%B-%Y") %></p>
+            <p>From: <%= @evento.start_time.strftime("%I:%M %p") %></p>
+            <p>To: <%= @evento.end_time.strftime("%I:%M %p") %></p>
+            <p>The duration of the meetings are: <%= @evento.plazoDeTiempo.strftime("%H hs ; %M min")%></p>
+            <h3>This is the link others can use to book: <%= link_to reservas_path,:reservas, class: "index-link" %></h3>
         </div>
         <div class="Reserva">
             <% if @reservas.size == 0 %>
-                <h2>Nadie reservo todavia a este evento</h2>
+                <h2>No one booked for this event</h2>
             <% else %>
                 <% @reservas.each do |reserva|%>
                     <div style="color: red">
                         <ul>
                             <li>
-                                <h2>Tenes una reserva a nombre de: <%= reserva.email %></h2>
-                                <h2>A partir de las:<%= reserva.horario.strftime("%I-%M %p") %></h2>
+                                <h2>You have a reservation of: <%= reserva.email %></h2>
+                                <h2>Starting at:<%= reserva.horario.strftime("%I-%M %p") %></h2>
                             </li>
                         </ul>
                     </div>

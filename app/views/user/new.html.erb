@@ -47,7 +47,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Registro de usuario</h2>
+    <h2>User register</h2>
     <%= form_with url: create_user_path ,model:@user do |us|%>
       <% @user.errors.full_messages.each do |error|%>
         <div style="color: red">
@@ -57,27 +57,28 @@
       <%end%>
       <br>
       <div>
-        <%= us.label :name, "Nombre" %>
+        <%= us.label :name, "Name" %>
         <%= us.text_field :name, class: "texto" %>
       </div>
 
       <div>
-        <%= us.label :surname, "Apellido" %>
+        <%= us.label :surname, "Surname" %>
         <%= us.text_field :surname, class: "texto" %>
       </div>
 
       <div>
-        <%= us.label :email, "Correo electronico" %>
+        <%= us.label :email, "Enter a email" %>
         <%= us.email_field :email, class: "texto" %>
       </div>
 
       <div>
-        <%= us.label :password, "Contraseña" %>
+        <%= us.label :password, "Your password" %>
         <%= us.password_field :password, class: "texto" %>
       </div>
 
-      <%= us.submit "registrar" %>
-      <%= link_to "¿Ya te has registrado?", :serch_user, class: "index-link" %>
+      <%= us.submit "Register" %>
+      <br>
+      <%= link_to "Have you already registered?", :serch_user, class: "index-link" %>
 
     <%end%>
     <div></div>

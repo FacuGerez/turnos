@@ -30,14 +30,14 @@
 <body>
     <div class="container">
         <div class="Evento">
-          <h1 style="color: green">Reserva Exitosa!!</h1>
+          <h1 style="color: green">Successful booking!!</h1>
           <br>
-          <h2>Reservaste al correo: <%= @reserva.email %></h2>
-          <h2>A partir de este horario:<%= @evento.dia.strftime("%d-%B-%Y") %> a las <%= @reserva.horario.strftime("%I-%M %p") %></h2>
+          <h2>You reserved the mail: <%= @reserva.email %></h2>
+          <h2>From:<%= @evento.dia.strftime("%d-%B-%Y") %> <%= @reserva.horario.strftime("%I-%M %p") %></h2>
         </div>
     </div>
     <div>
-      <%= link_to "Back to reservas", reservas_path %>
+      <%= link_to "Back to reservations", reservas_path %>
     </div>
 </body>
 

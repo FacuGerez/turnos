@@ -62,7 +62,7 @@
 </head>
 <body>
   <header>
-    <h1>El evento es : <%= @evento.eventName %></h1>
+    <h1>The event is : <%= @evento.eventName %></h1>
   </header>
   <%= button_to "Delete this event", delete_evento_path(id1: @evento.id), method: :delete , class: "eliminar" %>
   <%= render partial:'formulario', locals: { redirect_path: update_evento_path } %>

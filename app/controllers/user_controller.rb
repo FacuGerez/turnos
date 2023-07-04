@@ -34,7 +34,7 @@ class UserController < ApplicationController
     if @user&.authenticate(params[:password])
       redirect_to user_path(@user.id)
     else
-      flash[:success] = "La contraseña o el correo introducido no son correctos"
+      flash[:success] = "The password or email entered is not correct"
       render :login, status: :unprocessable_entity
     end
   end

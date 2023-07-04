@@ -29,12 +29,12 @@
   <% end %>
 
   <div>
-    <%= form.label :email, "Introdusca su email", style: "display: block"%>
-    <%= form.text_field :email, class: "texto"%>
+    <%= form.label :email, "Enter a email: ", style: "display: block"%>
+    <%= form.email_field :email, class: "texto"%>
   </div>
 
   <div>
-    <%= form.label :horario, "Confirma un horario posible:", style: "display: block" %>
+    <%= form.label :horario, "Confirm the required schedule: ", style: "display: block" %>
     <%= form.select :horario, options_for_select(@botones.keys), class: "select"%>
   </div>
   <br>

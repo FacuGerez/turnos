@@ -17,11 +17,11 @@ class EventosController < ApplicationController
       if @evenNuevo.save
         redirect_to user_path(params[:id])
       else
-        flash[:success] = "Falta seleccionar el dia"
+        flash[:success] = "You have to select a day"
         render :new, status: :unprocessable_entity
       end
     else
-      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos o no estan"
+      flash[:success] = "The start and end times or the meeting time are not compatible"
       render :new, status: :unprocessable_entity
     end
 
@@ -36,11 +36,11 @@ class EventosController < ApplicationController
       if @evento.update(evento_params)
         redirect_to user_path(params[:id])
       else
-        flash[:success] = "Falta seleccionar el dia"
+        flash[:success] = "You have to select a day"
         render :edit, status: :unprocessable_entity
       end
     else
-      flash[:success] = "El plazo o los horarios de empieza y termina estan mal puestos o no estan"
+      flash[:success] = "The start and end times or the meeting time are not compatible"
       render :edit, status: :unprocessable_entity
     end
   end

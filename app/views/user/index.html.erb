@@ -110,7 +110,7 @@
 </head>
 <body>
     <header>
-        <%= "Bienvenido #{@user.name}" %>
+        <%= "Welcome #{@user.name}" %>
     </header>
     <%= link_to "New event", new_evento_path, class: "btn btn-primary redireccion" %>
     <div class="container">
@@ -139,16 +139,16 @@
         </div>
     </div>
     <div class= "container2">
-        <h2>Reservaste a los siguientes eventos:</h2>
+        <h2>You have booked the following events:</h2>
         <% @eventoYReservas.each do |reserva,evento| %>
             <%= link_to edit_reserva_path(id1: evento.id,id2: reserva.id), class: "btn btn-primary dia" do %>
                 <div style="color: green">
                     <ul>
                         <li>
-                            <h3>Nombre: <%= evento.eventName %></h3>
-                            <p>El dia: <%= evento.dia.strftime("%d-%B-%Y") %></p>
-                            <p>Desde las: <%= reserva.horario.strftime("%I-%M %p") %></p>
-                            <p>La duracion de la reunion sera de: <%= evento.plazoDeTiempo.strftime("%H hs ; %M min") %></p>
+                            <h3>Name: <%= evento.eventName %></h3>
+                            <p>The day: <%= evento.dia.strftime("%d-%B-%Y") %></p>
+                            <p>From: <%= reserva.horario.strftime("%I-%M %p") %></p>
+                            <p>The duration of the meeting is: <%= evento.plazoDeTiempo.strftime("%H hs ; %M min") %></p>
                         </li>
                     </ul>
                 </div>
