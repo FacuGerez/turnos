@@ -1,4 +1,5 @@
 class Reserva < ApplicationRecord
+    before_save :downcase_attributes
     validates :email, presence: true,
         format: {
             with: /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i,
@@ -6,7 +7,7 @@ class Reserva < ApplicationRecord
         }
     validates :horario, presence: true
     belongs_to :evento
-    before_save :downcase_attributes
+
     private
         def downcase_attributes
             self.email = email.downcase

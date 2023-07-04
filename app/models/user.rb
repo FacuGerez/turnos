@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
+    before_save :downcase_attributes
     validates :name , presence: true ,
         length: {in:3..15},
         format: {
@@ -19,7 +20,7 @@ class User < ApplicationRecord
         }
     validates :password, presence: true, length: {minimum:6, maximum:24}
     has_many :eventos, dependent: :destroy
-    before_save :downcase_attributes
+
 
     private
         def downcase_attributes
